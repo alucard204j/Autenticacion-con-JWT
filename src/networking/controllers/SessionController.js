@@ -13,13 +13,13 @@ class SessionController {
 
   static async getToken() {
     const refreshToken = TokenService.getLocalRefreshToken();
-    const token = await axios.post(generateBackendURL('/auth/signup'), { refreshToken });
+    const token = await axios.post(generateBackendURL('/auth/refreshtoken'), { refreshToken });
     TokenService.setUser(token);
   }
 
   static async autenticado() {
     const token = TokenService.getToken();
-    const user = await axios.post(generateBackendURL('/auth/signup'), { token });
+    const user = await axios.post(generateBackendURL('/test/user'), { token });
     return user;
   }
 
